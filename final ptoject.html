@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Omar Ahmed | Data Analyst</title>
+<style>
+        /* ===== DARK MODE CSS ===== */
+        :root {
+            --header-height: 3rem;
+            --primary-color: #2B5F8E; /* Dark Blue */
+            --secondary-color: #FF6B6B; /* Coral Red */
+            --body-font: 'Poppins', sans-serif;
+            
+            /* Dark mode colors */
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --text-light: #f8f9fa;
+            --text-muted: #b0b0b0;
+            --card-bg: #1e1e1e;
+            --card-hover: #2a2a2a;
+            --nav-bg: rgba(30, 30, 30, 0.95);
+            --border-color: #333;
+            
+            /* Accent colors */
+            --accent-teal: #4ECDC4;
+            --accent-coral: #FF9E7D;
+            --whatsapp-color: #25D366;
+            --linkedin-color: #0077B5;
+            --facebook-color: #1877F2;
+            --instagram-color: #E4405F;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--body-font);
+            color: var(--text-light);
+            background: var(--bg-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Dark overlay intro section */
+        .intro {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .intro-content {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.5s forwards 0.5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .intro h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* Typing Text Styles */
+        .typing-container {
+            min-height: 80px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .typing-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .typing-word {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 5px;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-right: 3px solid var(--secondary-color);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        .data-text {
+            background-image: linear-gradient(135deg, var(--accent-teal), var(--primary-color));
+        }
+        
+        .business-text {
+            background-image: linear-gradient(135deg, var(--accent-coral), var(--secondary-color));
+        }
+        
+        .pipe {
+            color: var(--text-light);
+            margin: 0 5px;
+        }
+        
+        @keyframes typing-word {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary-color) }
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-light);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Header styles */
+        .l-header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav__logo {
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .nav__logo:hover {
+            color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
+        .nav__logo i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .nav__toggle {
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            color: var(--text-light);
+        }
+        
+        .nav__menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav__list {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav__link {
+            color: var(--text-light);
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s;
+            text-decoration: none;
+            padding: 0.5rem 0;
+        }
+        
+        .nav__link:hover,
+        .nav__link.active-link {
+            color: var(--secondary-color);
+        }
+        
+        .nav__link.active-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+            animation: navUnderline 0.3s ease-out;
+        }
+        
+        /* Mobile menu profile image */
+        .mobile-profile {
+            display: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+            margin: 1rem auto;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+        
+        @keyframes navUnderline {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        /* Section styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Skills Section - Updated as per screenshot */
+        .skills__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skills__data {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+        
+        .skills__data:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: var(--card-hover);
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: var(--bg-darker);
+            border-radius: 5px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--accent-teal);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        .skill-percent {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: var(--accent-teal);
+        }
+        
+        /* Projects Section */
+        .work__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .work__item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .work__img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .work__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            filter: grayscale(30%);
+        }
+        
+        .work__content {
+            padding: 1.5rem;
+        }
+        
+        .work__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .work__item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        
+        /* Contact Section - Removed email and phone */
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .button {
+            display: inline-block;
+            background: var(--accent-teal);
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .whatsapp-button {
+            background-color: var(--whatsapp-color);
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            box-shadow: 0 10px 20px rgba(18, 140, 126, 0.3);
+        }
+        
+        .email-button {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Social Media */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .social-icon.facebook {
+            background-color: var(--facebook-color);
+        }
+        
+        .social-icon.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        
+        .social-icon.linkedin {
+            background-color: var(--linkedin-color);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-darker);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav__toggle {
+                display: block;
+            }
+            
+            .nav__menu {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--bg-darker);
+                flex-direction: column;
+                padding: 2rem;
+                transition: 0.5s;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                border-left: 1px solid var(--border-color);
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .nav__menu.show {
+                right: 0;
+            }
+            
+            .mobile-profile {
+                display: block;
+            }
+            
+            .intro h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .typing-text {
+                font-size: 1.8rem;
+            }
+            
+            .typing-word {
+                font-size: 1.8rem;
+            }
+            
+            .contact-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- ===== HEADER ===== -->
+<header class="l-header">
+<nav class="nav">
+<div>
+<a class="nav__logo" href="#">
+<i class="fas fa-chart-line"></i>
+                    Omar Ahmed
+                </a>
+</div>
+<div class="nav__menu" id="nav-menu">
+<img class="mobile-profile" src="https://i.ibb.co/N6f6rBqZ/Whats-App-Image-2025-04-19-at-02-14-40-6bdfa283.jpg" alt="Profile Image" loading="lazy">
+<ul class="nav__list">
+<li class="nav__item"><a class="nav__link active-link" href="#home">Home</a></li>
+<li class="nav__item"><a class="nav__link" href="#about">About</a></li>
+<li class="nav__item"><a class="nav__link" href="#skills">Skills</a></li>
+<li class="nav__item"><a class="nav__link" href="#work">Projects</a></li>
+<li class="nav__item"><a class="nav__link" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="nav__toggle" id="nav-toggle">
+<i>☰</i>
+</div>
+</nav>
+</header>
+<!-- ===== INTRO SECTION ===== -->
+<section class="intro" id="home">
+<div class="intro-content">
+<img class="profile-image" src="https://i.ibb.co/N6f6rBqZ/Whats-App-Image-2025-04-19-at-02-14-40-6bdfa283.jpg" alt="Omar Ahmed - Data Analyst" loading="lazy">
+<h1>Omar Ahmed</h1>
+<div class="typing-container">
+<div class="typing-text" id="typingText"></div>
+</div>
+</div>
+<div class="scroll-down">↓</div>
+</section>
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+<h2 class="section-title">About Me</h2>
+<div class="about__content">
+<p>I'm Omar Ahmed, a Commerce graduate from Mansoura University with a passion for transforming raw data into meaningful insights. With expertise in data analysis and business intelligence, I help organizations make data-driven decisions that drive growth and efficiency.</p>
+<p>My journey in data analysis began during my university studies, where I discovered the power of data in solving real-world business problems. Since then, I've dedicated myself to mastering the tools and techniques that turn numbers into actionable strategies.</p>
+</div>
+</section>
+<!-- ===== SKILLS ===== -->
+<section class="section" id="skills">
+<h2 class="section-title">My Skills</h2>
+<div class="skills__container">
+<div class="skills__data">
+<h3>Python &amp; Pandas</h3>
+<p>Advanced data manipulation, cleaning, and analysis using Python's data science stack.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="90%"></div>
+</div>
+<span class="skill-percent">90%</span>
+</div>
+<div class="skills__data">
+<h3>Excel</h3>
+<p>Advanced formulas, pivot tables, and data modeling for business analysis.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="95%"></div>
+</div>
+<span class="skill-percent">95%</span>
+</div>
+<div class="skills__data">
+<h3>Power BI &amp; Tableau</h3>
+<p>Creating interactive dashboards and visualizations for business intelligence.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="85%"></div>
+</div>
+<span class="skill-percent">85%</span>
+</div>
+<div class="skills__data">
+<h3>Statistics</h3>
+<p>Statistical analysis, hypothesis testing, and predictive modeling.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="75%"></div>
+</div>
+<span class="skill-percent">75%</span>
+</div>
+<div class="skills__data">
+<h3>SQL</h3>
+<p>Database design, querying, and optimization for efficient data retrieval.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="80%"></div>
+</div>
+<span class="skill-percent">80%</span>
+</div>
+<div class="skills__data">
+<h3>Data Storytelling</h3>
+<p>Communicating insights effectively to non-technical stakeholders.</p>
+<div class="skill-bar">
+<div class="skill-progress" data-width="85%"></div>
+</div>
+<span class="skill-percent">85%</span>
+</div>
+</div>
+</section>
+<!-- ===== PROJECTS ===== -->
+<section class="section" id="work">
+<h2 class="section-title">My Projects</h2>
+<div class="work__container">
+<div class="work__item">
+<div class="work__img">
+<img alt="Sales Analysis" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" loading="lazy"/>
+</div>
+<div class="work__content">
+<h3>Retail Sales Analysis</h3>
+<p>Analyzed 2 years of sales data to identify trends and optimize inventory.</p>
+<p><strong>Technologies:</strong> Python, Pandas, Matplotlib</p>
+</div>
+</div>
+<div class="work__item">
+<div class="work__img">
+<img alt="Customer Segmentation" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" loading="lazy"/>
+</div>
+<div class="work__content">
+<h3>Customer Segmentation</h3>
+<p>Implemented clustering algorithms to segment 10,000+ customers.</p>
+<p><strong>Technologies:</strong> Scikit-learn, Seaborn, PCA</p>
+</div>
+</div>
+<div class="work__item">
+<div class="work__img">
+<img alt="Financial Dashboard" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" loading="lazy"/>
+</div>
+<div class="work__content">
+<h3>Financial Dashboard</h3>
+<p>Interactive dashboard tracking KPIs for a multinational corporation.</p>
+<p><strong>Technologies:</strong> Power BI, DAX, SQL</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
+<h2 class="section-title">Contact Me</h2>
+<div class="contact-actions">
+<a class="button whatsapp-button" href="https://wa.me/201006364313">
+<i class="fab fa-whatsapp"></i> Contact via WhatsApp
+            </a>
+<a class="button email-button" href="mailto:els3edyomar@gmail.com">
+<i class="fas fa-envelope"></i> Send Email
+            </a>
+</div>
+<div class="social-media">
+<a class="social-icon facebook" href="https://www.facebook.com/share/12M9Fgby4M4/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Facebook-icon-1.png" style="width: 24px; height: 24px; margin-right: 5px;" loading="lazy"/>
+<i class="fab fa-facebook-f"></i>
+</a>
+<a class="social-icon instagram" href="https://www.instagram.com/omar_els3edy_?igsh=NGk0M2tqbHhmZHZ6" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" style="width: 24px; height: 24px; margin-right: 5px;" loading="lazy"/>
+<i class="fab fa-instagram"></i>
+</a>
+<a class="social-icon linkedin" href="https://www.linkedin.com/in/omar-ahmed-15b48b337?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" style="width: 24px; height: 24px; margin-right: 5px;" loading="lazy"/>
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+</section>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+<p>© 2024 Omar Ahmed. All Rights Reserved.</p>
+</footer>
+<!-- Font Awesome for icons -->
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!-- ===== JS ===== -->
+<script>
+        // Menu Toggle
+        const toggle = document.getElementById('nav-toggle');
+        const menu = document.getElementById('nav-menu');
+        
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+
+        // Active Link Color Change
+        const links = document.querySelectorAll('.nav__link');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(item => item.classList.remove('active-link'));
+                this.classList.add('active-link');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.hash !== "#") {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Typing animation for intro text
+        function setupTypingAnimation() {
+            const typingElement = document.getElementById('typingText');
+            typingElement.innerHTML = '';
+            
+            const words = [
+                { text: "DATA", class: "data-text" },
+                { text: "ANALYSIS", class: "data-text" },
+                { text: "|", class: "pipe" },
+                { text: "BUSINESS", class: "business-text" },
+                { text: "INTELLIGENCE", class: "business-text" }
+            ];
+            
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.className = `typing-word ${word.class}`;
+                span.textContent = word.text + (index < words.length - 1 ? ' ' : '');
+                span.style.animation = `typing-word 0.5s ${index * 0.5}s forwards, blink-caret 0.75s ${index * 0.5}s infinite`;
+                span.style.width = '0';
+                
+                typingElement.appendChild(span);
+            });
+        }
+        
+        // Initialize typing animation
+        setupTypingAnimation();
+        
+        // Animate nav links on desktop
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav__link');
+            
+            if (window.innerWidth > 768) {
+                navLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.opacity = '1';
+                        link.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        });
+
+        // Animate skill bars on scroll
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+        }
+
+        // Run animation when skills section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkills();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.5});
+
+        observer.observe(document.querySelector('#skills'));
+    </script>
+</body>
+</html>
